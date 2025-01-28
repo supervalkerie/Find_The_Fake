@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnrx3t8kdo1qc"]
+
+[ext_resource type="Material" uid="uid://dwk418gnhrbsw" path="res://assets/materials/M_entity.tres" id="1_2nbu3"]
+[ext_resource type="Script" path="res://scripts/entity.gd" id="1_6o8u2"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wgtja"]
+material = ExtResource("1_2nbu3")
+size = Vector3(0.25, 0.25, 0.25)
+
+[node name="Entity" type="Node3D"]
+script = ExtResource("1_6o8u2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_wgtja")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_set_new_position"]

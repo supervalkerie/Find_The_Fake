@@ -1,12 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://dcmqg42n4tkaq"]
 
 [ext_resource type="Script" path="res://imposter.gd" id="1_juvxy"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n6pkx"]
-albedo_color = Color(0.592806, 0, 0.144928, 1)
+[ext_resource type="Material" uid="uid://dwk418gnhrbsw" path="res://assets/materials/M_entity.tres" id="2_7aqxe"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_qlqb7"]
-material = SubResource("StandardMaterial3D_n6pkx")
+material = ExtResource("2_7aqxe")
 size = Vector3(0.25, 0.25, 0.25)
 
 [node name="Imposter" type="Node3D"]
