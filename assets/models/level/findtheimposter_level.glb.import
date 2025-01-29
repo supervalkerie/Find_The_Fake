@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://trbfxmccqd5t"
-path="res://.godot/imported/findtheimposter_level.glb-010ad843fda84973e3094cf8855b2a6b.scn"
+uid="uid://dkxfpr3w4mwmm"
+path="res://.godot/imported/findtheimposter_level.glb-e9e89d8ce371635d3b5f764344143e30.scn"
 
 [deps]
 
-source_file="res://assets/models/findtheimposter_level.glb"
-dest_files=["res://.godot/imported/findtheimposter_level.glb-010ad843fda84973e3094cf8855b2a6b.scn"]
+source_file="res://assets/models/level/findtheimposter_level.glb"
+dest_files=["res://.godot/imported/findtheimposter_level.glb-e9e89d8ce371635d3b5f764344143e30.scn"]
 
 [params]
 

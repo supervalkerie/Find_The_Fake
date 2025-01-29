@@ -7,7 +7,10 @@
 [node name="Imposter" groups=["Imposter"] instance=ExtResource("1_w71qj")]
 script = ExtResource("1_juvxy")
 
-[node name="MeshInstance3D" parent="." index="0"]
+[node name="Mannequin" parent="findtheimposter_character/metarig/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("3_1s85p")
+
+[node name="MeshInstance3D" parent="." index="1"]
 surface_material_override/0 = ExtResource("3_1s85p")
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="." index="2"]
