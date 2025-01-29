@@ -1,14 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://dcmqg42n4tkaq"]
+[gd_scene load_steps=4 format=3 uid="uid://coquacffk8att"]
 
-[ext_resource type="Script" path="res://imposter.gd" id="1_juvxy"]
-[ext_resource type="Material" uid="uid://dwk418gnhrbsw" path="res://assets/materials/M_entity.tres" id="2_7aqxe"]
+[ext_resource type="Script" path="res://scripts/imposter.gd" id="1_juvxy"]
+[ext_resource type="PackedScene" uid="uid://bnrx3t8kdo1qc" path="res://scenes/entity.tscn" id="1_w71qj"]
+[ext_resource type="Material" uid="uid://ymh4dr245ag3" path="res://assets/materials/M_imposter.tres" id="3_1s85p"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_qlqb7"]
-material = ExtResource("2_7aqxe")
-size = Vector3(0.25, 0.25, 0.25)
-
-[node name="Imposter" type="Node3D"]
+[node name="Imposter" groups=["Imposter"] instance=ExtResource("1_w71qj")]
 script = ExtResource("1_juvxy")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_qlqb7")
+[node name="MeshInstance3D" parent="." index="0"]
+surface_material_override/0 = ExtResource("3_1s85p")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00441891, 0, -0.00530268)
+aabb = AABB(-0.12, -0.12, -0.12, 0.25, 0.25, 0.25)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_recieve_visible"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_recieve_not_visible"]
