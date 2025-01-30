@@ -1,17 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://coquacffk8att"]
+[gd_scene load_steps=3 format=3 uid="uid://coquacffk8att"]
 
 [ext_resource type="Script" path="res://scripts/imposter.gd" id="1_juvxy"]
 [ext_resource type="PackedScene" uid="uid://bnrx3t8kdo1qc" path="res://scenes/entity.tscn" id="1_w71qj"]
-[ext_resource type="Material" uid="uid://ymh4dr245ag3" path="res://assets/materials/M_imposter.tres" id="3_1s85p"]
 
 [node name="Imposter" groups=["Imposter"] instance=ExtResource("1_w71qj")]
 script = ExtResource("1_juvxy")
-
-[node name="Mannequin" parent="findtheimposter_character/metarig/Skeleton3D" index="0"]
-surface_material_override/0 = ExtResource("3_1s85p")
-
-[node name="MeshInstance3D" parent="." index="1"]
-surface_material_override/0 = ExtResource("3_1s85p")
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00441891, 0, -0.00530268)

@@ -221,9 +221,8 @@ _data = {
 "metarigAction": SubResource("Animation_uqcnf")
 }
 
-[sub_resource type="BoxMesh" id="BoxMesh_wgtja"]
-material = ExtResource("1_2nbu3")
-size = Vector3(0.25, 0.25, 0.25)
+[sub_resource type="BoxShape3D" id="BoxShape3D_dotix"]
+size = Vector3(0.75, 1.8, 0.35213)
 
 [node name="Entity" type="Node3D"]
 script = ExtResource("1_6o8u2")
@@ -448,14 +447,18 @@ libraries = {
 }
 autoplay = "metarigAction"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
-mesh = SubResource("BoxMesh_wgtja")
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00317383, 0.899582, -0.000924677)
+shape = SubResource("BoxShape3D_dotix")
+
 [connection signal="timeout" from="Timer" to="." method="_set_new_position"]
+[connection signal="mouse_entered" from="StaticBody3D" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="StaticBody3D" to="." method="_on_mouse_exited"]

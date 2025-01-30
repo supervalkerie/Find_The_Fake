@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://cgyb5md7f27a4"]
+[gd_scene load_steps=28 format=4 uid="uid://cgyb5md7f27a4"]
 
 [ext_resource type="Texture2D" uid="uid://hb8gdbpkppup" path="res://assets/models/level/findtheimposter_level_texture_07.png" id="1_tmeuy"]
 [ext_resource type="PackedScene" uid="uid://bnrx3t8kdo1qc" path="res://scenes/entity.tscn" id="2_7r13n"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://8bjo78jd2lxv" path="res://assets/models/level/findtheimposter_level_texture_08.png" id="2_xpr6f"]
 [ext_resource type="ArrayOccluder3D" uid="uid://dfu25kh6flnbg" path="res://scenes/main.occ" id="3_pr3ly"]
 [ext_resource type="Script" path="res://scripts/basic_cam.gd" id="4_mrcmk"]
+[ext_resource type="PackedScene" uid="uid://coquacffk8att" path="res://scenes/imposter.tscn" id="7_jfkyb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_07a1i"]
 
@@ -238,6 +239,10 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_8u0ap")
 
+[sub_resource type="SphereMesh" id="SphereMesh_chl4t"]
+radius = 0.25
+height = 0.5
+
 [node name="Main" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -290,8 +295,6 @@ skeleton = NodePath("")
 occluder = ExtResource("3_pr3ly")
 
 [node name="UI" parent="." instance=ExtResource("2_jmwxj")]
-process_mode = 4
-visible = false
 
 [node name="Camera_Pivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 0, 0, 0)
@@ -302,9 +305,15 @@ transform = Transform3D(1, 0, 0, 0, 0.91706, 0.398749, 0, -0.398749, 0.91706, 0,
 far = 25.0
 
 [node name="Entity" parent="." node_paths=PackedStringArray("navMarker") instance=ExtResource("2_7r13n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.66674, 0.180861, 2.41079)
-navMarker = NodePath("../Marker3D")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5647, 0, 2.35226)
+navMarker = NodePath("../Nav_Target")
 
-[node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.12359, 0, -4.53816)
-gizmo_extents = 0.5
+[node name="Imposter" parent="." node_paths=PackedStringArray("navMarker") instance=ExtResource("7_jfkyb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.69528, -4.76837e-07, 2.43644)
+navMarker = NodePath("../Nav_Target")
+
+[node name="Nav_Target" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.33535, 0, 4.44415)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Nav_Target"]
+mesh = SubResource("SphereMesh_chl4t")
