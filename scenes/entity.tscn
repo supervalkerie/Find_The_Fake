@@ -456,4 +456,6 @@ mesh = SubResource("BoxMesh_wgtja")
 wait_time = 3.0
 one_shot = true
 
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_set_new_position"]

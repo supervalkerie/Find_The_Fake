@@ -2,6 +2,9 @@ class_name Entity
 extends Node3D
 
 @onready var timer: Timer = $Timer
+@onready var nav: NavigationAgent3D = $NavigationAgent3D
+
+@export var navMarker : Node3D
 
 var current_position : Vector3
 var new_position : Vector3
@@ -10,17 +13,26 @@ var is_close : bool = false
 var is_moving : bool = false
 var done_moving : bool = false
 
-const MOVEMENT_SPEED : float = 0.5
+const MOVEMENT_SPEED : float = 2
 const MOVEMENT_DIST : int = 5
 const TIMER_WAIT : float = 5
 
 # Set the current position at start
 func _ready() -> void:
-	_set_new_position()
+	#_set_new_position()
+	nav.path_desired_distance = 0.5
+	nav.target_desired_distance = 0.5
+	nav.target_position = navMarker.position
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	_move_entity(delta)
+	#_move_entity(delta)
+	var current_agent_position: Vector3 = global_position
+	if current_agent_position.distance_to(navMarker.position) >= 0.5:
+		var next_path_position: Vector3 = nav.get_next_path_position()
+		position += position.direction_to(next_path_position) * MOVEMENT_SPEED * delta
+	pass
 
 # Randomly set a new position, and start moving.
 func _set_new_position() -> void:
