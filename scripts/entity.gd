@@ -5,7 +5,7 @@ extends Node3D
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
 @onready var mannequin: MeshInstance3D = $findtheimposter_character/metarig/Skeleton3D/Mannequin
 
-@export var navMarker : Node3D
+#@export var navMarker : Node3D
 
 var current_position : Vector3
 var new_position : Vector3
@@ -16,6 +16,9 @@ var done_moving : bool = false
 var is_mouse_hovering : bool = false
 var is_imposter : bool = false
 var is_marked : bool = true # Have to set this to true so it's inverted correctly in the marking function.
+
+var nav_targets : Array
+var nav_target : Node3D
 
 const MOVEMENT_SPEED : float = 2
 const TIMER_WAIT : float = 5
@@ -35,7 +38,10 @@ func _process(delta: float) -> void:
 func _set_new_position() -> void:
 	nav.path_desired_distance = 0.5
 	nav.target_desired_distance = 0.5
-	nav.target_position = navMarker.position
+	nav_targets = get_tree().get_nodes_in_group("nav_targets")
+	nav_target = nav_targets.pick_random()
+	print(nav_target)
+	nav.target_position = nav_target.position
 	is_moving = true
 
 func _determine_distance() -> bool:
